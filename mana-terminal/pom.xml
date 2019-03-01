@@ -58,7 +58,7 @@
             <id>zxing</id>
             <name>Maven Google Zxing</name>
             <url>http://repo1.maven.org/maven2/com/google/zxing/core/</url>
-            <layout>default</layout>
+            <layout>Maven Google Zxing</layout>
             <releases>
                 <enabled>true</enabled>
             </releases>

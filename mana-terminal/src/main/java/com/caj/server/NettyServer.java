@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author jie
+ * http://repo1.maven.org/maven2/com/google/zxing/core/
  * netty 服务
  */
 @Component
