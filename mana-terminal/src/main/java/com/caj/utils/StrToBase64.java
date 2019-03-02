@@ -1,6 +1,7 @@
 package com.caj.utils;
 
-import org.apache.commons.codec.binary.Base64;
+//import org.apache.commons.codec.binary.Base64;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 public class StrToBase64 {
 

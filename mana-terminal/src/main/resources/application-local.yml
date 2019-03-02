@@ -52,5 +52,11 @@ feign:
 
 # 图片上传地址
 upload:
-  img-path: /Users/caozhengjie/Downloads/test
+  img-path: /Users/caozhengjie/Downloads/test/
+
+
+rpcServer:
+  ioThreadNum: 5
+  backlog: 1024
+  port: 20011
 

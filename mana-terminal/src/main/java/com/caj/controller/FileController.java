@@ -1,5 +1,6 @@
-package com.caj.server;
+package com.caj.controller;
 
+import com.caj.server.FileUploadServer;
 import com.caj.utils.AssertUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +23,9 @@ import java.io.IOException;
  * @AUTHOR JIE
  * @date 2019/3/1
  */
-//@RestController
+@RestController
 @RequestMapping("file_upload")
-public class FileUploadServer {
+public class FileController {
 
     @Value("${upload.img-path}")
     private String imgPath;
@@ -36,7 +38,6 @@ public class FileUploadServer {
      * @return
      */
     @PostMapping(value = "/image_upload.json", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @RequestMapping(value = "/image_upload.json", method = RequestMethod.POST)
     public String fileUpload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
         AssertUtil.isTrue(file.isEmpty(), "上传失败，请选择要上传的图片!");
         try {
