@@ -43,15 +43,15 @@ public class FileController {
         try {
             int length = file.getBytes().length;
             logger.info("file.length:{}", length);
-            AssertUtil.isTrue(length > 5 * 1024 * 1024, "文件过大!");
+            AssertUtil.isTrue(length > 2 * 1024000000 , "文件过大!");
         } catch (IOException e) {
             AssertUtil.isTrue(true, "文件长度有误");
         }
         logger.info("file.getContentType:{}", file.getContentType());
-        AssertUtil.isTrue(!file.getContentType().contains("image"), "上传的文件不是图片类型，请重新上传!");
-        String imageUrl = "";
+//        AssertUtil.isTrue(!file.getContentType().contains("image"), "上传的文件不是图片类型，请重新上传!");
+        String fileUrl = "";
         try {
-            String temp = "image/upload/";
+            String temp = "file/upload/";
             logger.info("temp:{}", temp);
             // 获取图片的文件名
             String fileName = file.getOriginalFilename();
@@ -70,13 +70,23 @@ public class FileController {
                 dest.getParentFile().mkdirs();
             }
             // 将反斜杠转换为正斜杠
-            imageUrl = temp + newFileName;
-            logger.info("返回前端的url:{}", imageUrl);
+            fileUrl = temp + newFileName;
+            logger.info("返回前端的url:{}", fileUrl);
             // 上传到指定目录
             file.transferTo(dest);
         } catch (IOException e) {
             AssertUtil.isTrue(true, "上传失败");
         }
-        return imageUrl;
+        return fileUrl;
     }
+
+
+
+
+
+
+
+
+
+
 }
