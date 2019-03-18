@@ -49,3 +49,8 @@ cookie:
 feign:
   hystrix:
     enabled: false
+
+rpcServer:
+  ioThreadNum: 5
+  backlog: 10
+  port: 8801

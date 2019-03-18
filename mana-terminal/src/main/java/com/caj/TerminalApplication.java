@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.servlet.MultipartConfigElement;
 
+
 /**
  * @author jie
  * @date 2019-01-05
@@ -27,11 +28,11 @@ public class TerminalApplication {
     /**
      * 单个文件大小
      */
-    private final int fileSingleSize = 1024;
+    private final int fileSingleSize = 1 * 1024 * 1024 * 1024;
     /**
      * 总文件大小
      */
-    private final int fileTotalSize = 5120;
+    private final int fileTotalSize = 5 * 1024 * 1024 * 1024;
 
     /**
      * 文件上传大小配置
@@ -40,10 +41,14 @@ public class TerminalApplication {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
+        // 设置文件大小限制 ,超出设置页面会抛出异常信息，
+        // 这样在文件上传的地方就需要进行异常信息的处理了;
         // 单个文件大小
         factory.setMaxFileSize(fileSingleSize + "MB");
         // 总上传数据总大小
         factory.setMaxRequestSize(fileTotalSize + "MB");
+        // Sets the directory location where files will be stored.
+        // factory.setLocation("路径地址");
         return factory.createMultipartConfig();
     }
 }

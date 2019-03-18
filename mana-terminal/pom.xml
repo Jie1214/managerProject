@@ -4,15 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>mana-parent</artifactId>
-        <groupId>com.czj</groupId>
         <version>1.0-SNAPSHOT</version>
+        <groupId>com.czj</groupId>
         <relativePath>../mana-parent/pom.xml</relativePath>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
+    <name>mana-terminal</name>
+    <packaging>jar</packaging>
     <artifactId>mana-terminal</artifactId>
 
-    <name>mana-terminal</name>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -28,19 +30,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
-            <version>4.3.13.RELEASE</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.czj</groupId>-->
+            <!--<artifactId>mana-common</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
@@ -49,27 +43,31 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-transport</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <!-- Maven 自带的中央仓库使用的Id为central 如果其他的仓库声明也是用该Id
-            就会覆盖中央仓库的配置 -->
-            <id>zxing</id>
-            <name>Maven Google Zxing</name>
-            <url>http://repo1.maven.org/maven2/com/google/zxing/core/</url>
-            <layout>Maven Google Zxing</layout>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+    <!--<repository>-->
+    <!--&lt;!&ndash; Maven 自带的中央仓库使用的Id为central 如果其他的仓库声明也是用该Id-->
+    <!--就会覆盖中央仓库的配置 &ndash;&gt;-->
+    <!--<id>zxing</id>-->
+    <!--<name>Maven Google Zxing</name>-->
+    <!--<url>http://repo1.maven.org/maven2/com/google/zxing/core/</url>-->
+    <!--<layout>Maven Google Zxing</layout>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--</repository>-->
+    <!--</repositories>-->
 
     <build>
-        <finalName>mana-terminal</finalName>
+        <finalName>mana-web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
