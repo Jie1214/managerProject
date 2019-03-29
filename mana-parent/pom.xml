@@ -11,6 +11,7 @@
   <modules>
     <module>../mana-web</module>
     <module>../mana-terminal</module>
+      <module>../mana-netty</module>
   </modules>
 
   <name>mana-parent</name>
