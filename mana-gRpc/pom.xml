@@ -6,7 +6,7 @@
         <artifactId>mana-parent</artifactId>
         <groupId>com.czj</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../mana-web/pom.xml</relativePath>
+        <relativePath>../mana-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,87 +18,39 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <spring-boot.version>${parent.version}</spring-boot.version>
-        <net-devh-grpc.version>2.0.1.RELEASE</net-devh-grpc.version>
-        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <grpc.version>1.15.1</grpc.version>
     </properties>
 
 
     <dependencies>
+        <!--添加grpc依赖（包含TCP通信和protobuf序列化和反序列化）。-->
+        <!--grpc 开始-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-transport</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.protostuff</groupId>
-            <artifactId>protostuff-core</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.protostuff</groupId>
-            <artifactId>protostuff-runtime</artifactId>
-            <version>1.6.0</version>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty-shaded</artifactId>
+            <version>1.14.0</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
-            <artifactId>grpc-all</artifactId>
-            <version>${grpc.version}</version>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>1.14.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>1.14.0</version>
+        </dependency>
+        <!--grpc 结束-->
 
-        <!--&lt;!&ndash; protobuf 依赖&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>io.grpc</groupId>-->
-            <!--<artifactId>grpc-netty-shaded</artifactId>-->
-            <!--<version>1.19.0</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>io.grpc</groupId>-->
-            <!--<artifactId>grpc-protobuf</artifactId>-->
-            <!--<version>1.19.0</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>io.grpc</groupId>-->
-            <!--<artifactId>grpc-stub</artifactId>-->
-            <!--<version>1.19.0</version>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash;核心grpc-spring-boot依赖&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>net.devh</groupId>-->
-            <!--<artifactId>grpc-client-spring-boot-starter</artifactId>-->
-            <!--<version>${net-devh-grpc.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>net.devh</groupId>-->
-            <!--<artifactId>grpc-server-spring-boot-starter</artifactId>-->
-            <!--<version>${net-devh-grpc.version}</version>-->
-        <!--</dependency>-->
+        <!-- 不知道是什么但是必须弄过来 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.protobuf</groupId>
@@ -108,89 +60,34 @@
 
     </dependencies>
 
+    <!--添加编译proto文件的编译程序和对应的编译插件-->
     <build>
-        <finalName>mana-gRpc</finalName>
-
-        <!--使用 prodobuf -->
         <extensions>
             <extension>
                 <groupId>kr.motd.maven</groupId>
                 <artifactId>os-maven-plugin</artifactId>
                 <version>1.5.0.Final</version>
             </extension>
-
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>1.5.0.Final</version>
-            </extension>
-
-
         </extensions>
-
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.xolstice.maven.plugins</groupId>-->
-                <!--<artifactId>protobuf-maven-plugin</artifactId>-->
-                <!--<version>0.5.1</version>-->
-                <!--<configuration>-->
-                    <!--&lt;!&ndash;源IDL文件，如下为默认值&ndash;&gt;-->
-                    <!--<protoSourceRoot>${project.basedir}/src/main/java/com/czj/proto</protoSourceRoot>-->
-                    <!--&lt;!&ndash;默认值&ndash;&gt;-->
-                    <!--&lt;!&ndash;<outputDirectory>${project.build.directory}/generated-sources/protobuf/java</outputDirectory>&ndash;&gt;-->
-                    <!--&lt;!&ndash;配置编译后输出的文件地址&ndash;&gt;-->
-                    <!--<outputDirectory>${project.basedir}/src/main/java/com/czj/protobuf/java</outputDirectory>-->
-                    <!--&lt;!&ndash;<outputDirectory>${project.build.directory}/src/main/java/com/protobuf/java</outputDirectory>&ndash;&gt;-->
-                    <!--&lt;!&ndash;设置是否在生成java文件之前清空outputDirectory的文件，默认值为true，设置为false时也会覆盖同名文件&ndash;&gt;-->
-                    <!--<clearOutputDirectory>true</clearOutputDirectory>-->
-                    <!--<protocArtifact>-->
-                        <!--com.google.protobuf:protoc:3.5.1:exe:${os.detected.classifier}-->
-                    <!--</protocArtifact>-->
-                    <!--<pluginId>grpc-java</pluginId>-->
-                    <!--&lt;!&ndash;编译器地址，用artifact、groupId、version来确定唯一性f&ndash;&gt;-->
-                    <!--&lt;!&ndash;<pluginArtifact>&ndash;&gt;-->
-                        <!--&lt;!&ndash;io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}&ndash;&gt;-->
-                    <!--&lt;!&ndash;</pluginArtifact>&ndash;&gt;-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>compile</goal>-->
-                            <!--<goal>compile-custom</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-
-
-
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--</plugin>-->
-
-            <!--<plugin>-->
-                <!--<groupId>org.xolstice.maven.plugins</groupId>-->
-                <!--<artifactId>protobuf-maven-plugin</artifactId>-->
-                <!--<version>0.5.1</version>-->
-                <!--<configuration>-->
-                    <!--<protocArtifact>com.google.protobuf:protoc:3.6.1:exe:${os.detected.classifier}</protocArtifact>-->
-                    <!--<pluginId>grpc-java</pluginId>-->
-                    <!--<pluginArtifact>io.grpc:protoc-gen-grpc-java:1.19.0:exe:${os.detected.classifier}</pluginArtifact>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>compile</goal>-->
-                            <!--<goal>compile-custom</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-
-        <!--</plugins>-->
+        <plugins>
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>0.5.1</version>
+                <configuration>
+                    <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}</protocArtifact>
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.14.0:exe:${os.detected.classifier}</pluginArtifact>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compile-custom</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
-
 </project>

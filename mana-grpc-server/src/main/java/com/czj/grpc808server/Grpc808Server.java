@@ -1,8 +1,10 @@
 package com.czj.grpc808server;
 
+import com.alibaba.fastjson.JSON;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.examples.testjsonbin.sequenceGrpc;
+import io.grpc.examples.testjsonbin.*;
+import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -67,14 +69,17 @@ public class Grpc808Server extends sequenceGrpc.sequenceImplBase {
         /**
          * 重写 json 转 2 进制 方法
          */
-        public void json2Bin(){
-            logger.info("已经进入 >> 重写 json 转 2 进制 方法 << ");
+        @Override
+        public void json2Bin(JsonToBin req, StreamObserver<JsonToBinResult> responseObserver){
+            logger.info("已经进入 >> 重写 json 转 2 进制 方法 << {0}");
+            System.out.println(JSON.toJSONString(responseObserver));
             System.out.println("重写 json 转 2 进制 方法");
         }
         /**
          * 重写 2 进制 转 json 方法
          */
-        public void bin2json(){
+        @Override
+        public void bin2json(binToJson req, StreamObserver<ResultString> responseObserver){
             logger.info("已经进入 >> 重写 2 进制 转 json 方法 << ");
 
             System.out.println("重写 2 进制 转 json 方法");

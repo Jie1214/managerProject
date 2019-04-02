@@ -1,9 +1,12 @@
 package com.czj.grpc808client;
 
+import com.alibaba.fastjson.JSON;
 import com.czj.grpc808server.Grpc808Server;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
+import io.grpc.examples.testjsonbin.JsonToBin;
+import io.grpc.examples.testjsonbin.JsonToBinResult;
 import io.grpc.examples.testjsonbin.sequenceGrpc;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -35,28 +38,31 @@ public class Grpc808Client {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
-    public void greet(String name) {
-        logger.info("Will try to greet " + name + " ...");
-        Grpc808Server.SequenceImpl request = Grpc808Server.SequenceImpl.newBuilder().setName(name).build();
-        Grpc808Server.SequenceImpl response;
+    public JsonToBinResult greet(String msgId, String msgNum, String terminalPhoneNo, String value ) {
+        logger.info("调用什么方法 ... ");
+        JsonToBin request = JsonToBin.newBuilder()
+                .setMsgId(msgId)
+                .setMsgNum(msgNum)
+                .setTerminalPhoneNo(terminalPhoneNo)
+                .setValue(value)
+                .build();
+        JsonToBinResult response = null;
         try {
-            response = blockingStub.sayHello(request);
+            response = blockingStub.json2Bin(request);
         } catch (StatusRuntimeException e) {
             logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
-            return;
-        }
-        logger.info("Greeting: " + response.getMessage());
-        logger.info("Greeting: " + response.getMessage());
+    }
+        return response;
     }
 
     public static void main(String[] args) throws InterruptedException {
         Grpc808Client client = new Grpc808Client("127.0.0.1",50051);
         try{
-            String user = "world";
-            if (args.length > 0){
-                user = args[0];
-            }
-            client.greet(user);
+//            String user = "world";
+//            if (args.length > 0){
+//                user = args[0];
+//            }
+            System.out.println(JSON.toJSONString(client.greet("0x0001", "1", "1001", "{1:'1'}")));
         }finally {
             client.shutdown();
         }
