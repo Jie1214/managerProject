@@ -1,0 +1,16 @@
+server:
+  port: 8082
+  context-path: /gRpc
+grpc:
+  server:
+    port: 6000
+spring:
+  application:
+    name: hello-grpc-server
+
+
+info:
+  version: 1.0
+  name: hello-grpc-client
+
+
