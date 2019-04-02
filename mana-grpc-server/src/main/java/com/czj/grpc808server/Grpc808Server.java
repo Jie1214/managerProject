@@ -61,7 +61,6 @@ public class Grpc808Server extends sequenceGrpc.sequenceImplBase {
         server.blockUntilShutdown();
     }
 
-
     /**
      * 实现 定义一个实现服务接口的类
      */

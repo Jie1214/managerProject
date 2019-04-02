@@ -31,7 +31,7 @@ message JsonToBin {
 
 // 这是一个json转bean类的一个结果bean类
 message JsonToBinResult {
-  bytes resultBytes = 1;
+  string resultBytes = 1;
 }
 
 // 这是一个二进制转json
@@ -40,7 +40,7 @@ message binToJson {
   // uint32 MsgId = 1;
   string MsgId = 1;
   // JSON 字符串
-  bytes bytesResult = 2;
+  string bytesResult = 2;
 }
 
 // 这是一个二进制转json
