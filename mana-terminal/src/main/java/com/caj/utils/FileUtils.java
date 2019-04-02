@@ -9,7 +9,6 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 /**
  *
@@ -21,6 +20,65 @@ import java.util.Scanner;
 public class FileUtils {
 
     private static Logger logger = LoggerFactory.getLogger(FileUtils.class);
+
+
+    /**
+     * 写文件
+     * @param filePath 新文件路径
+     * @param endoceing 文件编码
+     * @param str 写入文件内容
+     */
+    public static void WriteStringToFile2(String filePath, String endoceing, String str) {
+        try {
+            FileOutputStream fos = new FileOutputStream(filePath);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, endoceing);
+            osw.write(str);
+            osw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 按照给定的编码方式写文件
+     * @param path 文件路径
+     * @param content 写入文件内容 StringBuilder 类型
+     * @param encoding 编码方式
+     * @throws IOException
+     */
+    public static void write(String path, StringBuilder content, String encoding)
+            throws IOException {
+        File file = new File(path);
+        file.delete();
+        file.createNewFile();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(file), encoding));
+        writer.write(content.toString());
+        writer.close();
+    }
+
+    /**
+     * 按照给定的编发方式读文件返回一个 StringBuilder 类型的串
+     * @param path 文件路径
+     * @param encoding 编码方式
+     * @return
+     * @throws IOException
+     */
+    public static StringBuilder read(String path, String encoding) throws IOException {
+        StringBuilder content = new StringBuilder();
+        File file = new File(path);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                new FileInputStream(file), encoding));
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            content.append(line + "\n");
+        }
+        reader.close();
+        return content;
+    }
+
+
+
 
     /**
      * <p>写文件</p>
@@ -316,6 +374,36 @@ public class FileUtils {
                 e.printStackTrace();
             }
 
+        }
+    }
+
+    /**
+     * 按照一定的编码方式进行读取文件
+     * @param file
+     */
+    private static void codeReading(File file, String encoding) {
+        InputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
+            //最后的"GBK"根据文件属性而定，如果不行，改成"UTF-8"试试
+            InputStreamReader reader = new InputStreamReader(fis, encoding);
+            BufferedReader br = new BufferedReader(reader);
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+            br.close();
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.testjsonbin";
+option java_outer_classname = "TestJsonBinProto";
+option objc_class_prefix = "HLW";
+
+package testjsonbin;
+
+// The greeting service definition.
+service sequence {
+  // 序列化方法
+  rpc json2Bin (JsonToBin) returns (JsonToBinResult) {}
+  // 反序列化方法
+  rpc Bin2json (binToJson) returns (ResultString) {}
+}
+
+// 这是一个json转bean类的一个bean类
+message JsonToBin {
+  // 消息Id
+  // uint32 MsgId = 1;
+  string MsgId = 1;
+  // 消息序号
+  // uint32 MsgNum = 2;
+  string MsgNum = 2;
+  // 手机号
+  string TerminalPhoneNo = 3;
+  // JSON 字符串
+  string Value = 4;
+}
+
+// 这是一个json转bean类的一个结果bean类
+message JsonToBinResult {
+  bytes resultBytes = 1;
+}
+
+// 这是一个二进制转json
+message binToJson {
+  // 消息Id
+  // uint32 MsgId = 1;
+  string MsgId = 1;
+  // JSON 字符串
+  bytes bytesResult = 2;
+}
+
+// 这是一个二进制转json
+message ResultString {
+  string jsonStr = 1;
+}

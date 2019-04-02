@@ -12,6 +12,7 @@
     <module>../mana-web</module>
     <module>../mana-terminal</module>
       <module>../mana-netty</module>
+      <module>../mana-grpc-server</module>
   </modules>
 
   <name>mana-parent</name>

@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8011
   context-path: /gRpc
 grpc:
   server:
@@ -7,7 +7,6 @@ grpc:
 spring:
   application:
     name: hello-grpc-server
-
 
 info:
   version: 1.0
