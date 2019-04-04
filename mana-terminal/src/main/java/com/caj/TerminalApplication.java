@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.MultipartConfigElement;
 
@@ -21,6 +22,12 @@ import javax.servlet.MultipartConfigElement;
 @EnableFeignClients  //feign用于调用不同的服务
 @EnableScheduling
 public class TerminalApplication {
+
+    @Bean
+    RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+
     public static void main( String[] args ) {
         SpringApplication.run(TerminalApplication.class);
     }

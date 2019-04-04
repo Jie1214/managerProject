@@ -21,7 +21,8 @@ public class ReadHeadFileController {
     /**
      * 文件路径
      */
-    private static String newPath = "/Users/caozhengjie/Downloads/600G";
+//    private static String newPath = "/Users/caozhengjie/Downloads/600G";
+    private static String newPath = "/Users/caozhengjie/Downloads/test/xs";
 
     public static void WriteStringToFile2(String filePath, String endoceing, String str) {
         try {
@@ -52,25 +53,30 @@ public class ReadHeadFileController {
 //    }
 
     public static String read(String path, String encoding) throws IOException {
-        String content = "";
+        StringBuilder content = new StringBuilder();
         File file = new File(path);
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 new FileInputStream(file), encoding));
         String line = null;
         while ((line = reader.readLine()) != null) {
-            content += line + "\n";
+            content.append(line + "\n");
         }
         reader.close();
-        return content;
+        return content.toString();
     }
 
     public static void main(String[] args) throws IOException {
         String content = "中文内容";
-        String path = newPath + "/第一部分.txt";
+        String path = newPath + "/淫男乱女1925章作者笨蛋英子(www.jimixs.com).txt";
         String encoding = "gbk";
         String str = read(path, encoding);
         System.out.println(str);
-        String newPathWrite = newPath + "/ten.txt";
+        String newPathWrite = newPath + "/13559-1-qwe.txt";
+
+        File file = new File(newPathWrite);
+        if(file.exists()){
+            file.createNewFile();
+        }
         WriteStringToFile2(newPathWrite, "utf-8", str);
     }
 

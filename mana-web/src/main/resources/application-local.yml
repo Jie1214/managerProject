@@ -8,6 +8,25 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
 #
+spring:
+  application:
+    name: service-web
+  datasource:
+    url: jdbc:mysql://47.100.42.204:3306/GNSS?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ybad
+    password: 123456
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
 
 #mybatis
 mybatis:

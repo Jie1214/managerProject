@@ -67,6 +67,7 @@
     <!--</repositories>-->
 
     <build>
+        <!-- 打jar包的时候的jar包名字 -->
         <finalName>mana-web</finalName>
         <plugins>
             <plugin>
