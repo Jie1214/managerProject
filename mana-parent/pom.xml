@@ -11,8 +11,13 @@
   <modules>
     <module>../mana-web</module>
     <module>../mana-terminal</module>
-      <module>../mana-netty</module>
-      <module>../mana-grpc-server</module>
+    <module>../mana-netty</module>
+    <module>../mana-grpc-server</module>
+    <module>../mana-gRpc</module>
+    <module>../mana-MBG</module>
+    <module>../mana-prodobuf</module>
+      <module>../mana-thread-project</module>
+      <module>../mana-common</module>
   </modules>
 
   <name>mana-parent</name>
@@ -38,7 +43,6 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.9.RELEASE</version>
   </parent>
-
 
   <dependencies>
     <dependency>
