@@ -72,7 +72,6 @@ public class ThreadController {
         }
     }
 
-
     public static void main(String[] args) throws InterruptedException {
         List<Future<String>> resultList = new ArrayList<Future<String>>();
         //使用submit提交异步任务，并且获取返回值为future

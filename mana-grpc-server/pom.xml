@@ -32,6 +32,18 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- netty 框架 开始 -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport</artifactId>
+        </dependency>
+        <!-- netty 框架 结束 -->
+
+
         <!--添加grpc依赖（包含TCP通信和protobuf序列化和反序列化）。-->
         <!--grpc 开始-->
         <dependency>

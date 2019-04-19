@@ -6,6 +6,7 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import io.grpc.examples.testjsonbin.*;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,9 +81,22 @@ public class Grpc808Client {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Grpc808Client client = new Grpc808Client("127.0.0.1",50051);
+        Grpc808Client client = new Grpc808Client("127.0.0.1",20011);
+
+        // 请输入
+        System.out.println("请输入");
+        Scanner sc = new Scanner(System.in);
+
+        String strScanner = sc.nextLine();
         try{
-            System.out.println(JSON.toJSONString(client.greet("0x0001", "[1,2,3,4]")));
+            switch (strScanner){
+                case "编码":
+                    System.out.println(JSON.toJSONString(client.greet("0x0001", "[1,2,3,4]")));
+                    break;
+                case "解码":
+                    // String msgId, String msgNum, String terminalPhoneNo, String value
+                    System.out.println(JSON.toJSONString(client.greet("0x0001", "1", "16604463007", "[1,2,3,4]")));
+            }
         }finally {
             client.shutdown();
         }
