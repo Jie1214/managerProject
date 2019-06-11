@@ -16,8 +16,9 @@
     <module>../mana-gRpc</module>
     <module>../mana-MBG</module>
     <module>../mana-prodobuf</module>
-      <module>../mana-thread-project</module>
-      <module>../mana-common</module>
+    <module>../mana-thread-project</module>
+    <module>../mana-common</module>
+    <module>../mana-learn-muxin</module>
   </modules>
 
   <name>mana-parent</name>

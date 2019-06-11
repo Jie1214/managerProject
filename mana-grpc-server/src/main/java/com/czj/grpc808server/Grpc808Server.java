@@ -29,28 +29,28 @@ public class Grpc808Server extends sequenceGrpc.sequenceImplBase {
 //    @Value("${rpcServer.backlog}")
 //    private int backlog;
 //    @Value("${rpcServer.port}")
-//    private int port;
+    private int port = 20011;
 
     @Autowired
     private static NettyServer nettyServer = new NettyServer();
 
     private Server server;
 
-//    private void start() throws IOException {
-//        server = ServerBuilder.forPort(port)
-//                .addService(new SequenceImpl())
-//                .build()
-//                .start();
-//        logger.info("Server started, listening on "+ port);
-//        Runtime.getRuntime().addShutdownHook(new Thread(){
-//            @Override
-//            public void run(){
-//                System.err.println("*** shutting down gRPC server since JVM is shutting down");
-//                Grpc808Server.this.stop();
-//                System.err.println("*** server shut down");
-//            }
-//        });
-//    }
+    private void start() throws IOException {
+        server = ServerBuilder.forPort(port)
+                .addService(new SequenceImpl())
+                .build()
+                .start();
+        logger.info("Server started, listening on "+ port);
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run(){
+                System.err.println("*** shutting down gRPC server since JVM is shutting down");
+                Grpc808Server.this.stop();
+                System.err.println("*** server shut down");
+            }
+        });
+    }
 
     private void stop(){
         if (server != null){
@@ -70,10 +70,10 @@ public class Grpc808Server extends sequenceGrpc.sequenceImplBase {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        nettyServer.nettyStart();
+//        nettyServer.nettyStart();
 
         final Grpc808Server server = new Grpc808Server();
-        // server.start();
+        server.start();
         server.blockUntilShutdown();
     }
 

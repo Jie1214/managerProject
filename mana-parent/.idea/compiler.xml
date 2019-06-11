@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mana-common" />
+        <module name="mana-gRpc" />
+        <module name="mana-grpc-server" />
+        <module name="mana-learn-muxin" />
+        <module name="mana-MBG" />
+        <module name="mana-netty" />
+        <module name="mana-prodobuf" />
+        <module name="mana-terminal" />
+        <module name="mana-thread-project" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="manalearnmuxin" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

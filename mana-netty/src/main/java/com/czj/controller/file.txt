@@ -1,0 +1,33 @@
+Service (类)
+    start (方法)
+        启动服务
+        传入参数: 无, 传出参数: 无
+    stop (方法)
+        停止已经启动的服务
+        传入参数: 无, 传出参数: 无
+    handle_terminal_msg (方法)
+        终端向平台发送数据(启动一个线程) 调用业务处理(终端向平台发送数据)的路由方法
+        传入参数: 二进制数据, 传出参数 json
+    handle_business_msg (方法)
+        平台向终端发送数据(启动一个线程) 调用业务处理(平台向终端发送数据)的路由方法
+        传入参数: 二进制数据, 传出参数
+        传入参数: json, 传出参数 二进制数据
+业务处理 (类)
+    终端向平台发送数据
+        路由 (方法)
+            根据参数判断需要调用的方法
+            传入参数: 消息Id(MsgID), 二进制数据(binData), 终端手机号(terminalPhone)
+            传出参数: 发送消息是否成功 (json)
+        每条消息的具体的方法 Msg0xXXXX (方法)
+            传入参数: 消息Id(MsgID), 二进制数据(binData), 终端手机号(terminalPhone)
+            传出参数: 消息Id(MsgID), 处理结果 (jsonData), 终端手机号(terminalPhone)
+        ...
+    平台向终端发送数据
+        路由 (方法)
+            根据参数判断需要调用的方法
+            传入参数: 消息Id(MsgID), JSON数据(jsonData), 终端手机号(terminalPhone)
+            传出参数: 发送消息是否成功 (json)
+        每条消息的具体的方法 Msg0xXXXX (方法)
+            传入参数: 消息Id(MsgID), JSON数据数据(jsonData), 终端手机号(terminalPhone)
+            传出参数: 消息Id(MsgID), 处理结果 (binData), 终端手机号(terminalPhone)
+        ...
